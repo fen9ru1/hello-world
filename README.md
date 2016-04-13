@@ -1,2 +1,6 @@
 # hello-world
-try to create a test repository
+
+Hi humans!
+
+I am charlie,I like play basketball.
+yes it is ture
