@@ -233,3 +233,222 @@ n
     火、水曜、17:00~ 会議あり、山田さんから招集
     
 #来季体制
+
+
+#edge 
+    poc 説明会
+    2/21
+
+
+#hzi 打ち合わせ
+pamera 4.0 これから。。
+重複ところ、違うところありそう
+背景
+    独立して、つくるではなく、いいところを取り合い
+Hitzの姿勢
+    Evoliot の特徴を紹介済みの前提で打ち合わせい
+    datarobot twx,などTool紹介
+    コラボ、コミュニケーション環境作り
+
+    取り入れる、pareraののメンバをEvoliotに
+    どれぐらいコストかけるつもり
+
+    橋済みさんは、未来を考えている
+
+#岸田さんtalk
+
+    過去lakeからTier2(csv / parqiet)、RDSにlambdaか
+    doc 
+        比較
+        堀川さん資料     
+    problem 
+        csv DL用csv file 
+        parqiet 理由は不十分
+        what if we add a branch for csv DL 
+            glue or lambda
+            double cost? cost saver, 1 year rotation 
+            reason to keep parquet architector 
+
+rds del
+
+#memo 
+    wpg 
+    db 整備　over 
+    isk route試験　over 
+
+    datadog 死活　over 
+    0214 ,,旧基盤　cmk down 
+    architector 
+
+#inova MTG
+    独立、個別   ばらばら
+        コラボレーション　環境
+        pf, 可視化,
+    inova 単独にしなくても、
+        共通ところは、流用
+
+    メンバ
+        ututani
+        kimura mio, 外業
+        kimoto  EFW 開発、osaka、研きとか情報交換担当
+
+    ivawa 
+        degitalzation
+            pemera 客契約,機械学習
+            遠隔、情報収集、seed? すすめている
+        Q:back bone共通できる？社長気になる
+            現在、お金生み出していない
+            osakaのひとinova知らない、(機会を設けてもよい)
+        構築中
+            シード、pamera
+        時系列
+            共通化する、evoliotに乗る？
+        first step //comment
+            稼働情報をelloit lakeに持っていく
+            app,servce は、共同で使る？
+        契約
+            ミリアム？　pemera、
+            iot business 作りたい
+            タイ　案件、data-> 南港ー分析して reportをclient
+            gdpr...個人情報
+        体制
+            ari,  wilanm 責任者
+        課題
+            app,は　かんきに？
+            
+    hitz 
+        evoliot 
+            architector intro
+            edge, 接続支援、cloud
+            iot datalake貯める
+            設備ごとに　data mart、
+            標準可視化tool整備、twx
+            global展開できる、姿勢、サービス
+            基本的にiot データ、個人情報(notice通知が例外)を紐付きしない
+        シード  
+            ゴミ独自、
+        方針：
+            iot 本部,full support if ivowa want
+        独自
+            環境はiotのproではない
+            security周りはiot部署と組まないと、懸念
+            世界展開のときは、やはり共通化
+            別々独自で同じもの開発する場合、非効率
+                local、custermizeの部分当然出ってくる
+            pamera4.0は　evvloitに乗れるか
+        歴史 
+            remon,がある、cloudに持っていないのは状況
+            on-premiは 古い
+        自慢
+            １００人 30億/year情報化投資
+            IT　skillあるよ
+        global 
+            姿勢、一緒に
+            一本化方法、
+        契約
+            clentとの契約、、、役にたたない
+            eu,... data 基準   
+        ながれ
+            いきなり合流は難しいが
+            流れを作りたい
+            可視化、costテーマ
+            presentation で紹介、日程調整
+
+
+#IM
+    by name
+
+    step
+
+マニュアル
+    いらない？
+        集まった情報
+        最終納品out putではない
+
+     
+IM->運用　回す
+    可能？
+        IM 難しい
+
+    マニュアルは
+        運用レベル、？
+
+    IM説明
+    機能cheak
+    feed back 
+        障害
+        要望
+UAT 
+    user 受け入れテスト？
+    DEV　teamが userではない
+    3/1 3/10
+
+#RDS 周り会議
+    カク資料をもとに整理
+        作業項目
+    TTl ？
+        メンド処理メンテンス
+    会議メモ
+
+    会議内容
+        DBに関わる作業整理、認識合わせい
+    進み方：
+        案件上がる都度、3名DBAの中で交流しつつ、対応
+    DB Doc現状問題:
+        teamドキュメント乱立、
+        file構成複雑
+    DBA　to do:
+        DB用　channel新規
+        順次 Doc 整理
+    DBA定例 MTG 予定:
+        未定
+    DB変更時の今後の対応(案):   
+        開発環境の場合：要請表、mail 、shelterを利用（証跡残す意味で）
+        本番用：shelter利用
+
+DB flow
+
+#多言語化　山崎さん　相談
+
+通知機能の多言語化の設計 
+    多言語設定情報の持たせ方の設計     
+        platformなにをもって言語切り替えかを検討 
+            人(通知先の人のmail adr)に結びつく
+            通知アドバイスとsetで設定する？
+        DBスキーマ調整、//gen-dev環境作成済み
+        設定GUI(IM との連携)機能要件の検討       
+    テンプレートの多言語化の検討
+        製品ごとで考える？
+            FPS: ng, ja
+            WAE:  ng, zh
+実装
+    lambdaロジックの修正
+    route テンプレート修正
+テスト
+
+
+
+
+
+Alarmデータ(cat_id)  
+    可視化とよう連携
+    edgeから日本語上がっているので、どうしよう
+今季中　closeing
+
+
+https://www.asahi-net.or.jp/~ax2s-kmtn/ref/iso639.html
+
+
+--> 堀川さん相談
+    CSV DL 
+    多言語化
+    TTL
+
+#0218
+G-mtg 
+    多面観察
+
+
+    https://dev.classmethod.jp/articles/s3_object_folder_download/
+
+   
