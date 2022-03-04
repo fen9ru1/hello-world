@@ -119,3 +119,31 @@ QRコードの内容は以下５項目です
     フリガナ
     支部
     個人番号
+
+img_name="Input_test_shift-jis"
+img_dir='/content/'+img_name+'.png'
+img_position = "F6"
+
+#Excelファイル名
+ExcelName = "EEEE.xlsx"
+
+#  """ 02 Excelファイル作成 """
+workbook = openpyxl.Workbook(ExcelName)
+workbook.save(ExcelName)
+
+
+# Excelファイル読込
+workbook = openpyxl.load_workbook(ExcelName)
+sheet = workbook.active
+
+# 画像を選択 & 挿入
+img_to_excel = openpyxl.drawing.image.Image(img_dir)
+sheet.add_image(img_to_excel, img_position)
+
+#保存
+workbook.save(ExcelName)
+
+
+5001 MC030235
+5001 DA023001
+DA051100
