@@ -792,3 +792,198 @@ hitz
 20220301-WAR-01 
     (Seeq,Athena Csv Download)
     判定結果:OK 
+
+
+#3/8
+
+data download (DL)
+    機能要件(想定)
+        DLしたファイル式
+            Csv形式,header付き
+            時系列データ
+        client access
+            権限コントロール
+            ID/PW 配布、消去
+            end　user やらない、hitz 職員限定
+        GUI 
+            多言語対応考慮
+            Time Span、Product、DLためのパラメータ指定して、DL対象の検索//要検討
+            DataはOnly Access権限範囲以内ものを表示
+
+        Cloud 
+            less cost 
+            CMN仕様的な存在のためProduct対応増える際にのリソース展開作業・設定作業を最小限に
+            リソースCFN 必要
+
+        Not Necessary 
+            Client がDLのリクエストを出したら、すぐDLが開始すること
+                DL完了後、Clientに通知する仕組みでもあり
+            Client がDLする前にCSV fileをlake上に長期貯め続けること
+        
+    工程
+        ~4
+            機能要件、技術調査
+        4,5,6,7
+            実装~ realse 
+
+        ※phase 1・2で分ける場合、工程見直し //必要ない
+
+
+    担当
+        堀川さん　        
+
+
+
+
+
+
+
+
+soracom調査    
+    現場の機器(繋がているか)On/off timelyにできるか？
+	    soracom 確認 
+HZI 
+    Start
+        橋爪さん、冒頭説明
+    Q&A
+        1.remonと結合していますか？　Noであれば、これからの計画
+        2.security チーム、担当ありますか,具体的に..
+            data storage,
+            network
+            log collection// datadog 
+            security related aws service 
+        3.データを蓄積しようと思えば,どこからstartするか
+            edge device から導入して、data collection部分からstart
+            すでに収集されたdataを　Evolliot のstorageにいれるか
+    これからの進み方
+        Miriam
+            collection, cloud architecture, security, analysis.....
+            のようにtheme分けて、deep diveしましょう
+        山田さん
+            技術的な情報共有を始める方法になると思いますが、
+            どのような方法で、どれぐらいの頻度で進めるかは課題ですね
+
+
+KX_164
+
+interface 
+
+interface 
+    iot socomiya 
+        site manager
+    mqtt 
+
+    requre
+
+plc /DCS  
+
+
+data tppe:
+    stucture　data 
+        time 10 sec 
+        1min zip
+        site ma 200 =300 
+        ftp 
+
+    unstucture 
+        incident, 
+opc ua 
+
+
+# 0309
+    移行？
+    やりたい
+        S3保存
+        ssh現地 測G
+        現地表示、web
+    aws account 
+        分ける？
+            yes 
+        請求書
+            mail . pdfで来る
+            送付先：
+
+        Evolliot 適用　
+    size 
+        500G、5施設、2年
+
+
+time zone
+    時間ぐぎり
+    15min？
+01 
+    manue 
+
+    健診用の問診票・検便キットは自分にデスク上にあるかどうか、
+
+# 03
+    会議自体はいいのですが、
+    自分は準備ができていない状態で、英語による自由な交流会に臨むのは厳しいですね
+
+    次回の会議もっと生産性を上げるために、以下のように提案
+
+    step 01:事前にQ&A表をお互いに準備
+        Q&A表に下記の内容を明確に：
+            関心を持っているtheme (collection, aws cloud architector, security, analysis....)
+            聞きたい質問 (例、edge device何を使っていますか)
+            次に紹介したい内容候補　
+
+    step 02:Q&A表に基づいて、会議のAgendaを会議前作成
+        資料準備 by Hitz側, できれば、会議前ivovaと共有
+        
+    step 03:会議の日程調整
+
+    その他：
+        会議中に、基本Agenda通り進む、
+        最後に自由なコミュニケーション時間を設ける
+
+
+
+yes, a hot path for data Analysis is optional
+for product(filterfress), we provide the hot path.
+for details, may be next time,i would like to share how we use aws services to implement
+if real time Analysis process is not necessary,
+we also have third party tools(Databricks) which could grab data from data lake, do some ML job 
+"Data Relay => Storage" 
+
+for http post, We use aws api gateway as the data ingestion point.
+the architector is like:
+api gateway->S3->(pub-sub)->"the following process 1,2,3" 
+for example: 
+following process 1 could be DB inserting
+following process 2 could be Lake sinking
+
+for MQTT, we use aws iot core for data collection 
+in this case the following process is flexible, depends on the requirement 
+take product FilterPress for example,
+we send "data loss signal" to iot core, then pass data to log monitor services(cloud watch, DataDog)
+
+
+data is encript
+
+お疲れ様です
+I推(シG)郭です
+
+teamsの英語名称表記の変更をお願いしたいと思います
+
+現在：KAKU Hohzui
+希望：GUO Charlie
+
+よろしくお願いします
+
+
+#
+CMN 
+    RDSの対象データ削除について、関連ドキュメント作成完了
+    Datadog セルフ監視について、リリース判定準備完了
+    aws利用料は（2月分）先月と比べてほぼ変わらない
+FPS
+    Soracom　Event Hundlerの検証について、IoT端末の死活監視に利用するのは難しい
+WAE
+    csv download(SeeQ + Athena)に関して、リリース実施完了
+WPG
+    Poc結合試験中のエラーまとめ、故障対応を実施
+IM 
+    UAT フィードバック 対応
+
+
