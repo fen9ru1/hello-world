@@ -939,19 +939,19 @@ time zone
 
 
 
-yes, a hot path for data Analysis is optional
+a hot path for data Analysis is optional
 for product(filterfress), we provide the hot path.
-for details, may be next time,i would like to share how we use aws services to implement
-if real time Analysis process is not necessary,
-we also have third party tools(Databricks) which could grab data from data lake, do some ML job 
+for details, may be next time,let us deep dive when we share aws implement 
+and, if real time Analysis process is not necessary,
+we also have third party tools(Databricks) which could fetch data from data lake, do some ML job 
 "Data Relay => Storage" 
 
-for http post, We use aws api gateway as the data ingestion point.
+for http post, We use aws api gateway to create an end-point for the data ingestion 
 the architector is like:
-api gateway->S3->(pub-sub)->"the following process 1,2,3" 
+api gateway->S3->(pub-sub)->"the following process a or b or c" 
 for example: 
-following process 1 could be DB inserting
-following process 2 could be Lake sinking
+following process a could be DB inserting
+following process b could be Lake sinking
 
 for MQTT, we use aws iot core for data collection 
 in this case the following process is flexible, depends on the requirement 
@@ -987,3 +987,300 @@ IM
     UAT フィードバック 対応
 
 
+On-Premises solutions
+
+
+
+    
+確認1 (ref General architecture 6)：
+可視化画面のデモできますかと、聞かれました。 
+一度thingworxの画面デモを考えていますが、 thingworxの画面見せてよいか 
+
+確認2 (ref General architecture 7)：
+現在利用されている様々な商用ツール(Twx, seeq,datarobot)のコスト、料金体系と聞かれまして、
+そもそも金額を出してよいか
+
+
+
+
+
+
+#inova
+
+
+01　・IoT platformとのinterface詳細　
+    //郭　説明担当
+    platform architector
+    interface   
+        route 間のif
+        layer 間のif 
+        aws account 間NW的なif
+     15min 
+
+
+　・Cost（初期費用と運営費用）
+    //保留
+    
+02　・IoT platformのデモ（現在運用されている案件）
+    25min
+    //可視化担当、kagata, kaku
+
+
+
+
+    demo 
+        対象product
+            FPS 
+        事業部に許可必要？
+            なし
+            Twx DevEnv + ダミデータ
+        how to demo
+            team 
+            spash, vpn 必要におうじて事前準備
+        時間見積もり
+            jp:10min, () Q,A
+            Eng:25min 
+
+        資料
+            事前に用意しない
+
+        リハサール
+            3/16 16:30~
+            member:kaku, kagata, syou,yamasaki
+
+                    
+        deep dive MTG 01時間
+            3/24（木曜日）暫定
+                17-18時希望 //kagata sann調整中
+            member: 
+                kaku,kagata, yamadaki or fujita 
+            会議中：可視化紹介の部分、録画しましょう
+
+
+
+                
+03 hitzからのrequest :
+    HZIが想定したsenarioはなんでしょう
+        具体的に。。。
+
+    hitz側から、architecureを提案する
+    目的は POC に　繋がる
+まとめ
+
+
+
+
+
+    1st deep dive meeting 議題：
+        00・QA 確認
+            hziからQuestion
+                QA表ベースでtalking
+            hitzからのQuestion :
+                HZIが想定したsenarioはなんでしょう
+                    具体的に。。。
+        01　・IoT platformとのinterface詳細説明　
+            //担当:郭、 15min
+            //資料準備
+        02 ・IoT platformのデモ（現在運用されている案件）
+            //担当:kagata・可視化、 25min
+            //リハサール準備が必要
+        
+
+#
+wpg poc     
+    phase 2
+        アンケート結果整理
+        非構造化データ　
+    資料？
+        Pocどうやって、実施したのか
+
+多言語対応　
+    可視化認識合わせ
+    teamsから、連携した
+
+リハサール
+    目的　
+        英語でスムーズ
+    
+
+#議事録
+    20220228-WAE-01 
+        グラフ設定編集のポップアップ画面におけるデータカテゴリ参照方式の変更
+
+#開発
+csv dl,多言語対応作業内容の整理
+来期devTeamの作業項目の整理
+
+
+
+
+#週報
+RDSの対象データ削除：リリース完了
+CSV DL(DownLoad)：進み方、スケジュール検討、要件定義書作成中。今後は週間定例化する予定
+多言語対応：要件整理中
+Inova 交流:Q&Aシート回答記載完了、初回のdeep dive MTG実施
+Datapipe line 開発：
+    単体テスト完了、ログ設計タスク(Audit Log用CFnの修正,S3バケットへの配信テスト)完了
+IM: マスタメンテ系、製品管理、デバイス管理のSIは完了
+
+
+#0328
+splash top 
+
+ivova 手続き調べる
+
+
+DL 
+    方法
+        ondemand 
+            申請
+                証明証
+                    sequence MD?
+
+        batch
+            対象外
+
+
+    Athenna処理ステータス問い合わせ
+        ー＞結果失敗
+    idea 
+        結果、終わったよー＞通知
+        DL しにいく
+
+DL 方法候補
+    aws console
+    winscp
+    Cyberdunk
+    DBeaver
+    Tableau Prep
+    SeeQ
+    Quick Sight
+    Web (Twx?)開発 (on demand)
+
+評価要素
+    開発コスト
+    セキュリティ
+    コスト
+
+I was just wondering if you use a common format for your CI/CD pipeline 
+with respect to Infrastructure as Code, like terraform, or if you use the Amazon specific format.
+ 
+
+about Infrastructure as Code, we use aws AWS CloudFormation(CFN).
+we coding our "route" with CloudFormation template lauguage(json or YAML is available)
+
+so,we also use AWS Serverless Application Model (SAM) to create "route" 
+basically we prefer serverless-type AWS service to create each "layer" and "route",
+(but in shr account,we have lots of 3th party tools that based on EC2).
+During deployment, SAM transforms and expands the SAM syntax into AWS CloudFormation syntax, 
+enabling us to build serverless applications faster.
+
+to set up a CI/CD Pipeline, we use AWS CodePipeline.
+which cloud automates "Route" delivery process. 
+
+
+like terraform, or if you use the Amazon specific format.
+
+
+
+
+自分はtype1です、生活習慣病ではタイプですので、
+出張禁止は重篤化を防ぐ効果があるとは思わないです
+インシュリンによる自己療養ははすでに5年間続いており、
+止まらない限り重篤化にならないとは思います
+前の米国研修は3ヶ月無事に過ごせました
+
+
+先生
+
+    診断書
+    いい　
+
+[メリット]​
+
+データ整形可
+・データ整形可
+
+SeeQ,QuickSight,Web API​
+
+
+12 page,
+バッチ
+ csv ファイルのS3保存コストかかる
+
+4/1
+ 
+
+
+
+#03/31
+ tel 病院
+    いつも通信している病院の先生
+    に行って大丈夫かの許可をもらう
+    時間4/1以降、でき早
+
+    Mr. yamada
+        ・4/1に見てもらう先生はA、糖尿病の専門であるが、産業医ではないそうです。
+        ・手順としては、4/1に見てもらう先生、いつも通信している病院の先生Bに行って大丈夫かの許可をもらう
+        ・上記2人の許可をもって、産業医との面談で許可をもらう
+        4/1の産業医との面談
+
+        国によって薬の持ち込みルールが違うので、
+        持ち込んでいいかの確認は必要とのことです
+        （スイスなので、たぶん大丈夫ですと思いますが）
+
+
+Froming 　１３：００
+
+MTG １５：００
+
+Doc 　１６：３０」
+
+自己準備
+    to do
+        Print-out of your online application form:
+        1 colored passport photo: 
+        Schedule (daily program) 
+    ing
+        pass port copy, 
+        Residence card copy
+        
+
+
+
+会社に聞く
+    Overseas Travel Insurance 
+        covering the entire stay in the Schengen countries (issued
+        generally in the country of residency Japan). Minimum insurance coverage: 30’000 EURO.
+        Mandatory coverages: medical expenses, repatriation expenses, death through injury, death
+        through sickness and hospitalization. Please attach a copy
+
+    Reservation for flight tickets
+        (and, if applicable, proof of other means of transportations) 
+        
+    Employment certificate 
+        on the company’s letterhead including date of commencement,
+        annual salary and duration of the vacation 
+    
+    Statement of your employer 
+        on the company’s letterhead certifying the purpose of the visit.
+        Please include duration and purpose of the visit, 
+        date of issue of the invitation letter, signature
+        and if applicable, a statement that occurring travel expenses will be paid by the company.
+        Letter must be in a Swiss language, must include Applicant´s surname, first name, Date of
+        Birth, Address, Phone number, E-Mail address and nationality.
+        #注意： Swiss language(German, French, Italian)に訳す必要がある　
+
+Inova に聞く
+    Hotel reservation 
+
+    Invitation letter 
+        from the inviting company in Switzerland on the company’s letterhead
+        confirming the duration and purpose of the visit, 
+        date of issue of the invitation letter and signature.
+        Letter must be in a Swiss language, must include Applicant´s surname, first name,
+        Date of Birth, Address, Phone number, E-Mail address and nationality. 
+        The letter needs to be sent as a scanned copy directly per e-mail to the embassy by the host company.
+        #自分から内容を提供
+    
+    
